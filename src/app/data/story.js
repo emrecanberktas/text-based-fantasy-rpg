@@ -1,11 +1,27 @@
+import {
+  GiBroadsword,
+  GiHealthPotion,
+  GiTreasureMap,
+  GiMagicSwirl,
+  GiWolfHowl,
+} from "react-icons/gi";
+
 export default {
   start: {
     id: "start",
     text: "Karanlık bir ormanda, elinde sadece bir meşale ile duruyorsun. Efsanevi Ejderha Tacı’nı bulmak için yola çıktın. Önünde üç yol var: sol tarafta bir kale silüeti, sağda bir köyden gelen dumanlar, ileride ormanın derinlikleri. Ne yaparsın?",
     choices: [
-      { text: "Kaleye doğru ilerle", nextScene: "castle" },
-      { text: "Köye git", nextScene: "village" },
-      { text: "Ormanın derinliklerine dal", nextScene: "forest" },
+      {
+        text: "Kaleye doğru ilerle",
+        nextScene: "castle",
+        animationType: "move",
+      },
+      { text: "Köye git", nextScene: "village", animationType: "move" },
+      {
+        text: "Ormanın derinliklerine dal",
+        nextScene: "forest",
+        animationType: "move",
+      },
     ],
   },
   castle: {
@@ -16,9 +32,14 @@ export default {
         text: "Kılıcı al ve içeri gir",
         nextScene: "castle_inside",
         effect: { addItem: "kılıç" },
+        animationType: "move",
       },
-      { text: "Kılıcı alma, içeri gizlice gir", nextScene: "castle_inside" },
-      { text: "Geri dön", nextScene: "start" },
+      {
+        text: "Kılıcı alma, içeri gizlice gir",
+        nextScene: "castle_inside",
+        animationType: "move",
+      },
+      { text: "Geri dön", nextScene: "start", animationType: "move" },
     ],
   },
   castle_inside: {
@@ -29,13 +50,19 @@ export default {
         text: "Şövalyeyle savaş",
         nextScene: "fight_knight",
         effect: { health: -30 },
+        animationType: "fight",
       },
       {
         text: "Haritayı al ve kaç",
         nextScene: "escape_map",
         effect: { addItem: "harita" },
+        animationType: "move",
       },
-      { text: "Konuşmaya çalış", nextScene: "talk_knight" },
+      {
+        text: "Konuşmaya çalış",
+        nextScene: "talk_knight",
+        animationType: "talk",
+      },
     ],
   },
   fight_knight: {
@@ -46,11 +73,13 @@ export default {
         text: "Devam et (kılıç varsa)",
         nextScene: "treasure_room",
         condition: { hasItem: "kılıç" },
+        animationType: "move",
       },
       {
         text: "Devam et (kılıç yoksa)",
         nextScene: "end_lose",
         effect: { health: -50 },
+        animationType: "move",
       },
     ],
   },
@@ -63,11 +92,13 @@ export default {
         nextScene: "treasure_room",
         condition: { hasItem: "iksir" },
         effect: { removeItem: "iksir" },
+        animationType: "talk",
       },
       {
         text: "İksiri vermeyi reddet",
         nextScene: "end_lose",
         effect: { health: -40 },
+        animationType: "fight",
       },
     ],
   },
@@ -75,8 +106,12 @@ export default {
     id: "escape_map",
     text: "Haritayı kaptın ve kalenin arka kapısından kaçtın. Harita, hazineye giden bir patikayı gösteriyor. Ne yaparsın?",
     choices: [
-      { text: "Patikayı takip et", nextScene: "treasure_path" },
-      { text: "Ormana geri dön", nextScene: "start" },
+      {
+        text: "Patikayı takip et",
+        nextScene: "treasure_path",
+        animationType: "move",
+      },
+      { text: "Ormana geri dön", nextScene: "start", animationType: "move" },
     ],
   },
   village: {
@@ -87,25 +122,38 @@ export default {
         text: "İksiri al",
         nextScene: "village_iksir",
         effect: { addItem: "iksir" },
+        animationType: "talk",
       },
-      { text: "Köylülere hazineyi sor", nextScene: "village_talk" },
-      { text: "Köyden ayrıl", nextScene: "start" },
+      {
+        text: "Köylülere hazineyi sor",
+        nextScene: "village_talk",
+        animationType: "talk",
+      },
+      { text: "Köyden ayrıl", nextScene: "start", animationType: "move" },
     ],
   },
   village_iksir: {
     id: "village_iksir",
     text: "İksiri aldın! Bir köylü, hazineye giden bir patikadan bahsediyor ama tehlikeli olduğunu söylüyor. Ne yaparsın?",
     choices: [
-      { text: "Patikaya git", nextScene: "treasure_path" },
-      { text: "Köylülerle daha fazla konuş", nextScene: "village_talk" },
+      {
+        text: "Patikaya git",
+        nextScene: "treasure_path",
+        animationType: "move",
+      },
+      {
+        text: "Köylülerle daha fazla konuş",
+        nextScene: "village_talk",
+        animationType: "talk",
+      },
     ],
   },
   village_talk: {
     id: "village_talk",
     text: "Köylüler, hazineyi koruyan bir büyücünün ormanda yaşadığını söylüyor. Onunla konuşmak için ormana gider misin?",
     choices: [
-      { text: "Büyücüye git", nextScene: "wizard" },
-      { text: "Köyden ayrıl", nextScene: "start" },
+      { text: "Büyücüye git", nextScene: "wizard", animationType: "move" },
+      { text: "Köyden ayrıl", nextScene: "start", animationType: "move" },
     ],
   },
   wizard: {
@@ -116,11 +164,13 @@ export default {
         text: "Yemini et ve tılsımı al",
         nextScene: "treasure_path",
         effect: { addItem: "tılsım" },
+        animationType: "talk",
       },
       {
         text: "Reddet ve savaş",
         nextScene: "end_lose",
         effect: { health: -60 },
+        animationType: "fight",
       },
     ],
   },
@@ -132,13 +182,15 @@ export default {
         text: "Kurda saldır",
         nextScene: "fight_wolf",
         effect: { health: -20 },
+        animationType: "fight",
       },
-      { text: "Kaç", nextScene: "escape_forest" },
+      { text: "Kaç", nextScene: "escape_forest", animationType: "move" },
       {
         text: "Kurdu sakinleştir",
         nextScene: "wolf_friend",
         condition: { hasItem: "iksir" },
         effect: { removeItem: "iksir", addItem: "sadık kurt" },
+        animationType: "talk",
       },
     ],
   },
@@ -150,25 +202,37 @@ export default {
         text: "Devam et (kılıç varsa)",
         nextScene: "treasure_path",
         condition: { hasItem: "kılıç" },
+        animationType: "move",
       },
       {
         text: "Devam et (kılıç yoksa)",
         nextScene: "end_lose",
         effect: { health: -50 },
+        animationType: "move",
       },
     ],
   },
   wolf_friend: {
     id: "wolf_friend",
     text: "İksiri kullanarak kurdu sakinleştirdin! Sadık bir kurt artık seninle. Hazineye giden patikayı gösteriyor. Ne yaparsın?",
-    choices: [{ text: "Patikayı takip et", nextScene: "treasure_path" }],
+    choices: [
+      {
+        text: "Patikayı takip et",
+        nextScene: "treasure_path",
+        animationType: "move",
+      },
+    ],
   },
   escape_forest: {
     id: "escape_forest",
     text: "Kurtlardan kaçtın ama ormanda kayboldun. Hazineyi bulma şansın azaldı. Ne yaparsın?",
     choices: [
-      { text: "Yeniden ormana dal", nextScene: "forest" },
-      { text: "Ormandan çık", nextScene: "end_escape" },
+      {
+        text: "Yeniden ormana dal",
+        nextScene: "forest",
+        animationType: "move",
+      },
+      { text: "Ormandan çık", nextScene: "end_escape", animationType: "move" },
     ],
   },
   treasure_path: {
@@ -179,16 +243,19 @@ export default {
         text: "Tılsımla tuzağı etkisizleştir",
         nextScene: "end_win",
         condition: { hasItem: "tılsım" },
+        animationType: "talk",
       },
       {
         text: "Dikkatlice geç",
         nextScene: "end_lose",
         effect: { health: -50 },
+        animationType: "move",
       },
       {
         text: "Sadık kurtla geç",
         nextScene: "end_win",
         condition: { hasItem: "sadık kurt" },
+        animationType: "move",
       },
     ],
   },
