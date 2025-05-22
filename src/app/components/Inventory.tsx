@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CiBag1 } from "react-icons/ci";
+import { RxCross1 } from "react-icons/rx";
 
 interface InventoryProps {
   items: string[];
@@ -21,14 +22,12 @@ function Inventory({ items }: InventoryProps) {
     <div className="p-4">
       <h2 className="mb-4 text-lg font-bold">Inventory</h2>
 
-      {!isInventoryOpen && (
-        <button
-          onClick={handleInventory}
-          className="text-3xl text-white hover:text-yellow-300 transition"
-        >
-          <CiBag1 />
-        </button>
-      )}
+      <button
+        onClick={handleInventory}
+        className="text-3xl text-white hover:text-yellow-300 transition"
+      >
+        <CiBag1 />
+      </button>
 
       {isInventoryOpen && (
         <div className="grid grid-cols-4 grid-rows-5 gap-2">
