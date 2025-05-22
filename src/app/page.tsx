@@ -13,9 +13,8 @@ interface SceneChoice {
 }
 
 interface SceneEffect {
-  addItem?: string;
-  health?: number;
-  removeItem?: string;
+  type: "addItem" | "removeItem" | "health";
+  value: string | number;
 }
 
 interface Scene {
@@ -39,18 +38,19 @@ export default function Home() {
     setAnimation(choice.animationType);
 
     if (choice.effect) {
-      if (choice.effect.addItem) {
-        setInventory([...inventory, choice.effect.addItem]);
-      }
-      if (typeof choice.effect.health === "number") {
-        setHealth((prev) => Math.max(0, prev + choice.effect.health));
-      }
-      if (choice.effect.removeItem) {
-        setInventory(
-          inventory.filter((item) => {
-            item !== choice.effect.removeItem;
-          })
-        );
+      switch (choice.effect.type) {
+        case "addItem":
+          setInventory([...inventory, choice.effect.value as string]);
+          break;
+        case "removeItem":
+          setInventory(
+            inventory.filter((item) => item !== choice.effect?.value)
+          );
+          break;
+        case "health":
+          setHealth((prev) =>
+            Math.max(0, prev + (choice.effect!.value as number))
+          );
       }
     }
   };
