@@ -4,24 +4,8 @@ import { useState } from "react";
 import storyData from "@/app/data/story";
 import Inventory from "./components/Inventory";
 import Animation from "./components/Animation";
-
-interface SceneChoice {
-  text: string;
-  nextScene: string;
-  animationType: "move" | "talk" | "fight" | null;
-  effect?: SceneEffect;
-}
-
-interface SceneEffect {
-  type: "addItem" | "removeItem" | "health";
-  value: string | number;
-}
-
-interface Scene {
-  id: string;
-  text: string;
-  choices: SceneChoice[];
-}
+import { SceneChoice, SceneEffect, Scene } from "./types/game";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [currentScene, setCurrentScene] = useState<string>("start");
@@ -32,6 +16,12 @@ export default function Home() {
     "Spear",
   ]);
   const [animation, setAnimation] = useState<string | null>(null);
+  const [error, setError] = useState({
+    state: false,
+    value: "",
+  });
+
+  const notify = () => toast(error.value);
 
   const handleChoice = (choice: SceneChoice) => {
     console.log({ choice });
@@ -43,9 +33,19 @@ export default function Home() {
           setInventory([...inventory, choice.effect.value as string]);
           break;
         case "removeItem":
-          setInventory(
-            inventory.filter((item) => item !== choice.effect?.value)
-          );
+          if (inventory.includes(choice.effect?.value as string)) {
+            setInventory(
+              inventory.filter(
+                (item) => item !== (choice.effect?.value as string)
+              )
+            );
+          } else {
+            setError({
+              state: true,
+              value: `Öğe ${choice.effect.value} Envanterde bulunamadı!`,
+            });
+          }
+
           break;
         case "health":
           setHealth((prev) =>
@@ -72,6 +72,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      {error.state && <ToastContainer />}
       <Animation
         type={animation}
         duration={2}
@@ -83,7 +84,8 @@ export default function Home() {
         <div>
           {scene.choices.map(
             (choice, index: number) =>
-              (!choice.condition || inventory.includes.condition.hasItem) && (
+              (!choice.condition ||
+                inventory.includes(choice.condition.hasItem)) && (
                 <button
                   onClick={() => handleChoice(choice)}
                   key={index}
