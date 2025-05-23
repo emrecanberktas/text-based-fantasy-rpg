@@ -8,6 +8,11 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
   if (!type) {
     return null;
   }
+
+  if (!["move", "talk", "fight"].includes(type)) {
+    console.warn(`Geçersiz animasyon türü${type}`);
+    return null;
+  }
   const animations: AnimationsMap = {
     fight: {
       icon: GiBroadsword,
@@ -18,8 +23,10 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
     },
     move: {
       icon: GiWalkingBoot,
-      animate: { x: [0, 10, -10], y: [10, -10, 0] },
-      transition: { duration: duration * 0.8, repeat: 1, ease: "easeInOut" },
+      motionProps: {
+        animate: { x: [0, 10, -10], y: [10, -10, 0] },
+        transition: { duration: duration * 0.8, repeat: 1, ease: "easeInOut" },
+      },
     },
     talk: {
       icon: LuSpeech,
@@ -35,8 +42,11 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
   const animation = animations[type];
 
   if (!animation) {
+    console.warn(`Geçersiz animasyon türü${type}`);
     return null;
   }
+
+  const { icon: Icon, motionProps } = animation;
 
   return (
     <motion.div
