@@ -4,7 +4,7 @@ import { useState } from "react";
 import storyData from "@/app/data/story";
 import Inventory from "./components/Inventory";
 import Animation from "./components/Animation";
-import { SceneChoice, SceneEffect, Scene } from "./types/game";
+import { SceneChoice, SceneEffect, Scene, AnimationType } from "./types/game";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
     "Dagger",
     "Spear",
   ]);
-  const [animation, setAnimation] = useState<string | null>(null);
+  const [animation, setAnimation] = useState<AnimationType | null>(null);
   const [error, setError] = useState({
     state: false,
     value: "",
