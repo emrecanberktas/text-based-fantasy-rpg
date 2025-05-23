@@ -5,8 +5,8 @@ import {
   GiMagicSwirl,
   GiWolfHowl,
 } from "react-icons/gi";
-
-export default {
+import { Scene } from "../types/game";
+const StoryData: Record<string, Scene> = {
   start: {
     id: "start",
     text: "Karanlık bir ormanda, elinde sadece bir meşale ile duruyorsun. Efsanevi Ejderha Tacı’nı bulmak için yola çıktın. Önünde üç yol var: sol tarafta bir kale silüeti, sağda bir köyden gelen dumanlar, ileride ormanın derinlikleri. Ne yaparsın?",
@@ -169,7 +169,7 @@ export default {
       {
         text: "Reddet ve savaş",
         nextScene: "end_lose",
-        effect: { health: -60 },
+        effect: { health: -60, addItem: "tılsım" },
         animationType: "fight",
       },
     ],
@@ -275,3 +275,5 @@ export default {
     choices: [],
   },
 };
+
+export default StoryData;
