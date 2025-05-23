@@ -28,14 +28,14 @@ export interface Scene {
 }
 
 export interface AnimationProps {
-  type: string | null;
+  type: AnimationType | null;
   duration: number;
   onComplete: () => void;
 }
 
 export interface AnimationConfig {
   icon: IconType;
-  motionProps?: MotionProps;
+  motionProps: MotionProps;
   animate?: { [key: string]: any };
   transition?: { duration: number; repeat?: number; ease?: string };
 }
