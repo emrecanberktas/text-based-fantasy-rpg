@@ -2,18 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { GiBroadsword, GiWalkingBoot } from "react-icons/gi";
 import { LuSpeech } from "react-icons/lu";
-
-interface AnimationProps {
-  type: string | null;
-  duration: number;
-  onComplete: () => void;
-}
+import { AnimationProps, AnimationsMap } from "../types/game";
 
 function Animation({ type, duration = 2, onComplete }: AnimationProps) {
   if (!type) {
     return null;
   }
-  const animations = {
+  const animations: AnimationsMap = {
     fight: {
       icon: GiBroadsword,
       motionProps: {
@@ -37,9 +32,9 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
     },
   };
 
-  const { icon: Icon, motionProps } = animations[type] || {};
+  const animation = animations[type];
 
-  if (!icon) {
+  if (!animation) {
     return null;
   }
 
@@ -47,7 +42,7 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
     <motion.div
       {...motionProps}
       onAnimationComplete={onComplete}
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -tranlsate-y-1/2 z-50 "
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 "
     >
       <Icon className="w-16 h-16 text-yellow-600" />
     </motion.div>
