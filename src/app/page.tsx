@@ -71,7 +71,7 @@ export default function Home() {
   const scene = storyData[currentScene];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-[url('/GameBackground.jpg')] bg-cover bg-center text-white flex flex-col items-center justify-center p-4">
       {error.state && <ToastContainer />}
       <Animation
         type={animation}
