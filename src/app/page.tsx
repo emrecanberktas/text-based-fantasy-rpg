@@ -6,6 +6,7 @@ import Inventory from "./components/Inventory";
 import Animation from "./components/Animation";
 import { SceneChoice, SceneEffect, Scene, AnimationType } from "./types/game";
 import { toast, ToastContainer } from "react-toastify";
+import useMousePosition from "./hooks/UseMousePosition";
 
 export default function Home() {
   const [currentScene, setCurrentScene] = useState<string>("start");
