@@ -6,7 +6,7 @@ import { AnimationProps, AnimationsMap } from "../types/game";
 import useMousePosition from "../hooks/UseMousePosition";
 
 function Animation({ type, duration = 2, onComplete }: AnimationProps) {
-  const { x, y } = useMousePosition;
+  const { x, y } = useMousePosition();
 
   if (!type) {
     return null;
@@ -16,6 +16,8 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
     console.warn(`Geçersiz animasyon türü${type}`);
     return null;
   }
+
+  const sceneBackgrounds = {};
 
   const animations: AnimationsMap = {
     fight: {
@@ -57,12 +59,15 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
           left: x,
           top: y,
           transform: "translate(-50%,-50%)",
+          zIndex: 50,
+          cursor: "none",
         }
       : {
           position: "fixed" as const,
           left: "50%",
           top: "50%",
           transform: "translate(-50%,-50%)",
+          zIndex: 50,
         };
 
   return (
