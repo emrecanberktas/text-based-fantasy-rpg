@@ -5,21 +5,17 @@ export interface SceneChoice {
   text: string;
   nextScene: string;
   animationType: "move" | "talk" | "fight" | null;
-  effect?: SceneEffect;
+  effect?: SceneEffect | SceneEffect[];
   condition?: {
-    hasItem: string;
+    hasItem?: string | string[];
+    hasStatus?: string;
   };
 }
 
 export interface SceneEffect {
-  type: "addItem" | "removeItem" | "health";
-  value: string | number;
+  type: "addItem" | "removeItem" | "health" | "addStatus" | "removeStatus";
+  value: string | string[] | number;
 }
-
-// export type SceneEffect =
-//   | { type: "addItem"; value: string }
-//   | { type: "removeItem"; value: string }
-//   | { type: "health"; value: number };
 
 export interface Scene {
   id: string;
