@@ -125,30 +125,6 @@ export default function Home() {
         <h1 className="text-3xl font-bold mb-4">Fantasy RPG</h1>
         <p className="text-lg mb-6">{scene.text}</p>
         <div className="flex justify-evenly">
-          {/* {scene.choices.map((choice, index) => {
-            const isConditionMet =
-              !choice.condition || choice.condition.hasItem
-                ? typeof choice.condition?.hasItem === "string"
-                  ? inventory.includes(choice.condition.hasItem)
-                  : choice.condition?.hasItem?.every((item) =>
-                      inventory.includes(item)
-                    )
-                : true &&
-                  (choice.condition.hasStatus
-                    ? status.includes(choice.condition.hasStatus)
-                    : true);
-            return isConditionMet ? (
-              <button
-                onClick={() => handleChoice(choice)}
-                key={index}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded"
-              >
-                {choice.text}
-              </button>
-            ) : (
-              <div>Emre</div>
-            );
-          })} */}
           {scene.choices.map((choice, index) => (
             <button
               key={index}
