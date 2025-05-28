@@ -149,8 +149,9 @@ export default function Home() {
               <div>Emre</div>
             );
           })} */}
-          {scene.choices.map((choice) => (
+          {scene.choices.map((choice, index) => (
             <button
+              key={index}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded flex items-center gap-0.5"
               onClick={() => handleChoice(choice)}
             >
@@ -162,7 +163,6 @@ export default function Home() {
               ) : (
                 <RiUserVoiceLine size={28} />
               )}
-              {choice.animationType === "fight" && <LuSwords />}
             </button>
           ))}
         </div>
