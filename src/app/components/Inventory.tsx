@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { CiBag1 } from "react-icons/ci";
-import { RxCross1 } from "react-icons/rx";
 
 interface InventoryProps {
   items: string[];

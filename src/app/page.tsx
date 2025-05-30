@@ -5,7 +5,7 @@ import storyData from "@/app/data/story";
 import Inventory from "./components/Inventory";
 import Animation from "./components/Animation";
 import { SceneChoice, AnimationType, SceneEffect } from "./types/game";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { LuSwords, LuFootprints } from "react-icons/lu";
 import { RiUserVoiceLine } from "react-icons/ri";
 
@@ -19,8 +19,6 @@ export default function Home() {
     state: false,
     value: "",
   });
-
-  const notify = () => toast(error.value);
 
   const handleChoice = (choice: SceneChoice) => {
     console.log({ choice });

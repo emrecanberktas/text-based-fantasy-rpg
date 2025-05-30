@@ -32,7 +32,7 @@ export interface AnimationProps {
 export interface AnimationConfig {
   icon: IconType;
   motionProps: MotionProps;
-  animate?: { [key: string]: any };
+  animate?: { [key: string]: number | string | number[] | string[] };
   transition?: { duration: number; repeat?: number; ease?: string };
 }
 

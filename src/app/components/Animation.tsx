@@ -17,8 +17,6 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
     return null;
   }
 
-  const sceneBackgrounds = {};
-
   const animations: AnimationsMap = {
     fight: {
       icon: GiBroadsword,

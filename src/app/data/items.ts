@@ -6,7 +6,7 @@ import {
   GiWolfHowl,
 } from "react-icons/gi";
 
-export default {
+const items = {
   kılıç: {
     image: GiBroadsword,
     description: "Paslı ama keskin bir kılıç, düşmanlara karşı etkili.",
@@ -28,3 +28,4 @@ export default {
     description: "Sana sadık bir kurt, tehlikelerde yardımcı olur.",
   },
 };
+export default items;
