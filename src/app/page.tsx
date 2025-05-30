@@ -122,13 +122,16 @@ export default function Home() {
         onComplete={handleAnimationComplete}
       />
       <div className="max-w-4xl w-full bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-4">Fantasy RPG</h1>
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-bold mb-4">Fantasy RPG</h1>
+          <p>Health: {health}</p>
+        </div>
         <p className="text-lg mb-6">{scene.text}</p>
         <div className="flex justify-evenly">
           {scene.choices.map((choice, index) => (
             <button
               key={index}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded flex items-center gap-0.5"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded flex items-center gap-2"
               onClick={() => handleChoice(choice)}
             >
               {choice.text}
