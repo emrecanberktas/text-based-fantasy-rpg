@@ -121,19 +121,21 @@ export default function Home() {
         duration={2}
         onComplete={handleAnimationComplete}
       />
-      <div className="max-w-4xl w-full medieval-panel">
+      <div className="max-w-5xl w-full bg-[rgba(26,35,58,0.95)] border-4 border-[#4a6fa5] rounded-[18px] shadow-[0_0_24px_4px_rgba(0,0,0,0.6)] p-6">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-4xl medieval-title">Fantasy RPG</h1>
-          <div className="text-lg font-bold medieval-title flex items-center gap-2">
-            <span>Health:</span> <span className="text-red-700">{health}</span>
+          <h1 className="text-4xl font-['UnifrakturCook'] text-[#7eb6ff] tracking-wider shadow-[2px_2px_0_#1a233a]">
+            Fantasy RPG
+          </h1>
+          <div className="text-lg font-['UnifrakturCook'] text-[#7eb6ff] flex items-center gap-2">
+            <span>Sağlık:</span> <span className="text-red-700">{health}</span>
           </div>
         </div>
         <p className="text-lg mb-6">{scene.text}</p>
-        <div className="flex justify-evenly flex-wrap">
+        <div className="flex justify-center items-center flex-wrap shrink gap-2">
           {scene.choices.map((choice, index) => (
             <button
               key={index}
-              className="medieval-btn flex items-center gap-2"
+              className="bg-gradient-to-r from-[#4a6fa5] to-[#7eb6ff] text-[#101624] border-2 border-[#2a4062] rounded-lg font-['UnifrakturCook'] text-lg py-2 px-4 shadow-md transition-colors hover:bg-[#2a4062] hover:text-[#e0e6f0] flex items-center gap-2"
               onClick={() => handleChoice(choice)}
             >
               {choice.text}
@@ -148,7 +150,10 @@ export default function Home() {
           ))}
         </div>
         {scene.choices.length === 0 && (
-          <button onClick={resetGame} className="medieval-btn">
+          <button
+            onClick={resetGame}
+            className="bg-gradient-to-r from-[#4a6fa5] to-[#7eb6ff] text-[#101624] border-2 border-[#2a4062] rounded-lg font-['UnifrakturCook'] text-lg py-2 px-4 shadow-md transition-colors hover:bg-[#2a4062] hover:text-[#e0e6f0]"
+          >
             Reset Game
           </button>
         )}

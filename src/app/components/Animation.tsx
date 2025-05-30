@@ -24,21 +24,36 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
       icon: GiBroadsword,
       motionProps: {
         animate: { rotate: [0, 45, -45, 0], x: [0, 10, -10, 0] },
-        transition: { duration, repeat: 1, ease: "easeInOut" },
+        transition: {
+          duration,
+          repeat: 1,
+          ease: "easeInOut",
+          times: [0, 0.3, 0.7, 1],
+        },
       },
     },
     move: {
       icon: GiWalkingBoot,
       motionProps: {
-        animate: { x: [0, 10, -10], y: [10, -10, 0] },
-        transition: { duration: duration * 0.8, repeat: 1, ease: "easeInOut" },
+        animate: { x: [0, 10, -10, 0], y: [0, -10, 10, 0] },
+        transition: {
+          duration: duration * 0.8,
+          repeat: 1,
+          ease: "easeInOut",
+          times: [0, 0.3, 0.7, 1],
+        },
       },
     },
     talk: {
       icon: LuSpeech,
       motionProps: {
-        animate: { scale: [1, 1, 1], opacity: [0.5, 1, 0.5] },
-        transition: { duration, repeat: 1, ease: "easeInOut" },
+        animate: { scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] },
+        transition: {
+          duration,
+          repeat: 1,
+          ease: "easeInOut",
+          times: [0, 0.5, 1],
+        },
       },
     },
   };
@@ -77,7 +92,7 @@ function Animation({ type, duration = 2, onComplete }: AnimationProps) {
       onAnimationComplete={onComplete}
       className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 "
     >
-      <Icon className="w-16 h-16 text-yellow-600" />
+      <Icon className="w-16 h-16 text-[#7eb6ff]" />
     </motion.div>
   );
 }
