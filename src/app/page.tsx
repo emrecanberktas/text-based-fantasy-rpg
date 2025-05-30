@@ -121,17 +121,19 @@ export default function Home() {
         duration={2}
         onComplete={handleAnimationComplete}
       />
-      <div className="max-w-4xl w-full bg-gray-800 p-6 rounded-lg shadow-lg">
-        <div className="flex justify-between">
-          <h1 className="text-3xl font-bold mb-4">Fantasy RPG</h1>
-          <p>Health: {health}</p>
+      <div className="max-w-4xl w-full medieval-panel">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-4xl medieval-title">Fantasy RPG</h1>
+          <div className="text-lg font-bold medieval-title flex items-center gap-2">
+            <span>Health:</span> <span className="text-red-700">{health}</span>
+          </div>
         </div>
         <p className="text-lg mb-6">{scene.text}</p>
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly flex-wrap">
           {scene.choices.map((choice, index) => (
             <button
               key={index}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded flex items-center gap-2"
+              className="medieval-btn flex items-center gap-2"
               onClick={() => handleChoice(choice)}
             >
               {choice.text}
@@ -146,10 +148,7 @@ export default function Home() {
           ))}
         </div>
         {scene.choices.length === 0 && (
-          <button
-            onClick={resetGame}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mx-2 rounded"
-          >
+          <button onClick={resetGame} className="medieval-btn">
             Reset Game
           </button>
         )}

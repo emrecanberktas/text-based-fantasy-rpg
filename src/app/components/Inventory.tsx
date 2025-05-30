@@ -20,21 +20,21 @@ function Inventory({ items }: InventoryProps) {
 
   return (
     <div className="p-4">
-      <h2 className="mb-4 text-lg font-bold">Inventory</h2>
+      <h2 className="mb-4 text-lg medieval-title">Inventory</h2>
 
       <button
         onClick={handleInventory}
-        className="text-3xl text-white hover:text-yellow-300 transition"
+        className="text-3xl text-yellow-300 hover:text-yellow-500 transition medieval-btn"
       >
         <CiBag1 />
       </button>
 
       {isInventoryOpen && (
-        <div className="grid grid-cols-4 grid-rows-5 gap-2">
+        <div className="grid grid-cols-4 grid-rows-5 gap-2 mt-4">
           {filledSlots.map((item, index) => (
             <div
               key={`item-${index}`}
-              className="w-16 h-16 bg-gray-700 border border-amber-950 flex items-center justify-center text-white rounded"
+              className="w-16 h-16 inventory-slot-medieval flex items-center justify-center"
             >
               {item}
             </div>
@@ -43,7 +43,7 @@ function Inventory({ items }: InventoryProps) {
           {Array.from({ length: emptySlots }).map((_, index) => (
             <div
               key={`empty-${index}`}
-              className="w-16 h-16 bg-gray-700 opacity-50 border border-yellow-900 rounded"
+              className="w-16 h-16 inventory-slot-medieval opacity-50"
             />
           ))}
         </div>
